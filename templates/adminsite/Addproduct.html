@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Product</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		.header{
+			background-color: #039BE5;
+			width: 100%;
+			height: 50px;
+		}
+		body{
+			background-color: #F5F5F5;
+		}
+		p{
+			color: white;
+			float: left;
+			font-weight: bold;
+			text-align:right;
+			margin-left: 10%;
+			font-family: Arial;
+		}
+		button{
+			float: left;
+			border: none;
+			background-color:#039BE5;
+			padding: 4px;
+			margin-top: 0px;
+			height: 100%;
+			margin-left: 20px;
+			
+
+		}
+		
+		p2 {
+		 	margin-left: 5px;
+		 	
+		 	
+
+		}
+		a{
+			text-decoration: none;
+			color: white;
+
+		}
+		.dash{
+			background-color: #F5F5F5;
+			color: black;
+		}
+		.main{
+			background-color: white;
+			border: 1px solid;
+			border-color: #039BE5;
+			
+			
+			width: 80%;
+			margin-left: 10%;
+			margin-top: 20px;
+		}
+		.mainh{
+			background-color: #039BE5;
+			width: 100%;
+			height: 40px;
+		}
+		.mainf{
+			background-color: #039BE5;
+			width: 100%;
+			margin-top: 30px;
+			height: 40px;
+		}
+		.mainh p{
+			padding-left: 0px;
+			margin-left: 5px;
+			margin-top: 10px;
+			font-family: Arial;
+		}
+		.mainf p{
+			float: right;
+			font-style: italic;
+			margin-top: 10px;
+			margin-right: 5px;
+		}
+		.mainp{
+			margin-top: 180px;
+			color: black;
+			font-family: sans-serif;
+			text-align: center;
+			width: 100%;
+			margin-left: 0px;
+			padding-left: 0px;
+
+		}
+		span{
+			color: #039BE5;
+		}
+		.field{
+			float: right;
+		}
+		.ptitle{
+			width: 100%;
+			float: right;
+			padding-top: 10px;
+			
+		}
+		.title2{
+			margin-left: 20px;
+			width: 600px;
+		}
+		.pt{
+			color:black;
+			width: 100px;
+			padding-left: 170px;
+
+		}
+		
+	    .l2
+		{ margin-top:30px;
+		  float:right;
+		  margin-right:10px;}
+		 table
+		 { margin-left:20px;
+		   padding:60px 50px;
+		   font-family:Arial, sans-serif;
+		    margin-top:-20px;
+		  }
+	   th
+	   { padding:15px;
+	   	min-width: 200px;
+
+
+	   }
+	   .select
+	   { width:100%;}
+	    input[type="submit"]
+       { width:10%;
+	      height:30px;
+	    background-color:#9F0;
+         border-radius:5px;
+          }
+         input[type="reset"]
+         { width:10%;
+		   height:30px;
+         background-color:#F60;
+          border-radius:5px;
+            }
+		.btn
+		{ margin-top:-50px;
+		  margin-left:27%;}
+
+							 
+
+	</style>
+</head>
+
+
+
+<body>
+   
+    <div class="main">
+    	<div class="mainh"><p>Add Product</p>
+    	</div>
+    	<label class="l2"> Fields marks with<span style="color:red;">*</span> are mandatory </label>
+    	
+		<form method="post">
+		{%csrf_token%}
+           <div class="mid">
+              <table>
+              <tr>
+                <th> Product Name: <span style="color:red">*</span></th>
+                <td> <input type="text" name="pname" placeholder=" Product Name" id="text" style="width:500px;">
+                   <span style=" color:red;"> <div class="page"></div></span>
+                </td>
+                </tr>
+                <tr>
+                <th>Product Description:</th>
+                <td> <textarea name="pdes" id="text" style="width:500px; height:200px;" placeholder="Product Description"></textarea>
+                     <span style=" color:red;"><div class="page1"></div></span>
+                </td>
+                </tr>
+               
+                </tr>
+                <tr>
+                <th> Product price: <span style="color:red">*</span></th>
+                <td> <input type="text" name="pprice" placeholder="Enter price"  id="text" style="width:500px;">
+                   <span style=" color:red;"> <div class="page"></div></span>
+                </td>
+                </tr>
+                
+                <tr>
+                   <th> Product Quantity: <span style="color:red">*</span> </th>
+                   <td> 
+                   	<input type="number" name="pq" placeholder="Enter quantity">
+                         
+                 
+                                                                  
+                      
+                      </td>
+                      </tr>
+					  <tr>
+					  {%if msg%}
+						<p2 style="color:red;  text-align:center; ">{{msg}}</p2>
+						{%endif%}
+					   
+					  </tr>
+					  <tr>
+					  	<th>photo 1:</th>
+					  	<td>
+					  		<input type="file" name="pp1">
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<th>photo 2:</th>
+					  	<td>
+					  		<input type="file" name="pp2">
+					  	</td>
+					  </tr>
+					  <tr>
+					  	<th>photo 3:</th>
+					  	<td>
+					  		<input type="file" name="pp3">
+					  	</td>
+					  </tr>
+                      </table>
+                      <div class="btn">
+                  <input type="submit" name="Update"  <span style="color:black;" value="Add"> </span>
+                    <a href="/adminlogout" > <input type="button" name="cancel" value="Logout"style="background-color:orange; width:60px; height:30px;" ></a>
+             </div>
+             </div>
+         </form>
+          
+    	
+    	<div class="mainf"><p>&copy 2020 MBS</p>
+    	</div>
+    </div>
+</body>
+</html>

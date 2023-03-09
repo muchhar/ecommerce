@@ -1,0 +1,291 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Product</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<!-- bootstrap -->
+		<link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">      
+		<link href="{% static 'bootstrap/css/bootstrap-responsive.min.css'%}" rel="stylesheet">
+		
+		<link href="{% static 'themes/css/bootstrappage.css'%}" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/flexslider.css'%}" rel="stylesheet"/>
+		<link href="{% static 'themes/css/main.css'%}" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="{% static 'themes/js/jquery-1.7.2.min.js'%}"></script>
+		<script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>				
+		<script src="{% static 'themes/js/superfish.js'%}"></script>
+
+
+
+				
+		
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/jquery.fancybox.css'%}" rel="stylesheet"/>
+				
+		<!-- scripts -->
+	
+						
+		<script src="{% static 'themes/js/jquery.scrolltotop.js'%}"></script>
+		<script src="{% static 'themes/js/jquery.fancybox.js'%}"></script>	
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<script>
+		function onestr() {
+			document.getElementById('str1').style.color="yellow";
+
+			document.getElementById('str2').style.color="gray";
+			document.getElementById('str3').style.color="gray";
+			document.getElementById('str4').style.color="gray";
+			document.getElementById('str5').style.color="gray";
+			document.getElementById('taker').value="1";
+
+
+			
+			
+		}
+		function twostr() {
+			document.getElementById('str1').style.color="yellow";
+			document.getElementById('str2').style.color="yellow";
+			document.getElementById('str3').style.color="gray";
+			document.getElementById('str4').style.color="gray";
+			document.getElementById('str5').style.color="gray";
+			document.getElementById('taker').value="2";
+
+
+			
+			
+		}
+		function threestr() {
+			document.getElementById('str1').style.color="yellow";
+			document.getElementById('str2').style.color="yellow";
+			document.getElementById('str3').style.color="yellow";
+			document.getElementById('str4').style.color="gray";
+			document.getElementById('str5').style.color="gray";
+			document.getElementById('taker').value="3";
+
+			
+			
+		}
+		function fourstr() {
+			document.getElementById('str1').style.color="yellow";
+			document.getElementById('str2').style.color="yellow";
+			document.getElementById('str3').style.color="yellow";
+			document.getElementById('str4').style.color="yellow";
+			document.getElementById('str5').style.color="gray";
+			document.getElementById('taker').value="4";
+
+			
+			
+		}
+		function fivestr() {
+			document.getElementById('str1').style.color="yellow";
+			document.getElementById('str2').style.color="yellow";
+			document.getElementById('str3').style.color="yellow";
+			document.getElementById('str4').style.color="yellow";
+			document.getElementById('str5').style.color="yellow";
+			document.getElementById('taker').value="5";
+
+			
+			
+		}
+
+
+	</script>
+	</head>
+    <body>		
+		
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu" >
+				<div class="navbar-inner main-menu" >				
+					<a href="/" class="logo pull-left"><img style="margin-top: 1px;" src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></a>
+					
+				</div>
+			</section>
+			<section class="header_text sub">
+			
+				<h4><span>Product Detail</span></h4>
+			</section>
+			<section class="main-content">				
+				<div class="row">						
+					<div class="span9">
+						<div class="row">
+							<div class="span4">
+								<a href="" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="{{mai.url}}"></a>												
+								<ul class="thumbnails small">								
+																	
+									<li class="span1" >
+										<a href="{%url 'upimg' red1.id '1'%}" class="thumbnail" data-fancybox-group="group1" title="Description 3"><img src="{{red1.pp1.url}}" alt=""></a>
+									</li>													
+									<li class="span1" >
+										<a href="{%url 'upimg' red1.id '2'%}" class="thumbnail" data-fancybox-group="group1" title="Description 4"><img src="{{red1.pp2.url}}" alt=""></a>
+									</li>
+									<li class="span1" >
+										<a href="{%url 'upimg' red1.id '3'%}" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="{{red1.pp3.url}}" alt=""></a>
+									</li>
+								</ul>
+							</div>
+							<div class="span5">
+								<address>
+									<strong>Brand:</strong> <span>{{red1.pname}}</span><br>
+									<strong>Product Code:</strong> <span>Product {{red1.id}}</span><br>
+									<strong>Rate:</strong> <span> {{prat}}<span style="font-weight: normal;">({{ut}})</span><i class="fa fa-star fa-2x" aria-hidden="true" style=" color: yellow;"></i></span><br>
+																	
+								</address>									
+								<h4><strong>Price: ₹ {{red1.pprice}}</strong></h4>
+							</div>
+							<div class="span5">
+								<form class="form-inline" method="post">
+									
+									{%csrf_token%}
+									<label>Qty:</label>
+									<input type="text" class="span1" name="qon" value="1" placeholder="quantity"><br>
+									<p id="sinfo" style="color: red;">{{qinfo}}</p><p>&nbsp;</p>
+									
+									<button class="btn btn-inverse" type="submit" >Buy Now</button>
+									<a href="{%url 'addtocart' red1.id%}"><button class="btn btn-inverse" type="button">Add to cart</button></a>
+									</form>
+									
+								
+							</div>							
+						</div>
+						<div class="row">
+							<div class="span9">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class="active"><a href="#home">Description</a></li>
+									
+								</ul>							 
+								<div class="tab-content">
+									<div class="tab-pane active" id="home">{{red1.pdes}}</div>
+									
+								</div>							
+							</div>						
+							
+						</div>
+						<dt>{{red1.pdes}}</dt>
+					</div>
+					
+				</div>
+			</section>	
+			<form action="http://localhost:8000/rate/" method="post">
+			{%csrf_token%}
+		<div class="gol">
+			<h1 class="und">Rate:</h1>
+			<i class="fa fa-star fa-2x" aria-hidden="true" style="margin-left: 10px; color: gray;" id="str1" onclick="onestr()"></i>
+			<i class="fa fa-star fa-2x" aria-hidden="true" style="color: gray;" id="str2" onclick="twostr()"></i>
+			<i class="fa fa-star fa-2x" aria-hidden="true" style="color: gray;" id="str3" onclick="threestr()"></i>
+			<i class="fa fa-star fa-2x" aria-hidden="true" style="color: gray;" id="str4" onclick="fourstr()"></i>
+			<i class="fa fa-star fa-2x" aria-hidden="true" style="color: gray;" id="str5" onclick="fivestr()"></i>
+			<p id="sinfo" style="color: red;">{{sinfo}}</p>
+			
+			
+		</div>
+		<div class="gglot">
+			{%csrf_token%}
+			<input type="hidden" name="taker" value="0" id="taker">
+			<input type="hidden" name="ide" value="{{red1.id}}">
+			<button class="btn btn-inverse" >Submit</button>
+			
+		</div></form>	
+		<form action="http://localhost:8000/comment/" method="post">
+			{%csrf_token%}
+		<div class="gol">
+			<h1>Comment:</h1>
+			<textarea class="comment" placeholder="comment here" name="cmt" style="background-color: inherit;"></textarea>
+
+		</div>
+		<div class="gol">
+			<input type="hidden" name="ide" value="{{red1.id}}">
+			<div>
+			<p style="color: red; font-size: 15px;">{{cinfo}}</p>
+		</div>
+		{%csrf_token%}
+			<input type="submit" name="" value="Submit" class="btn btn-inverse">
+			
+		</div></form>
+		
+
+		{%for j in como%}
+		
+		<div>
+			<i class="fa fa-user-circle-o" aria-hidden="true" style="float: left; margin-top: 15px;margin-left: 10px; color: gray;"></i><h1 style="font-size: 20px; margin-left: 25px;">{{j.cuname}}:</h1>
+		</div>
+		<div>
+			<p style="margin-left: 20px;">{{j.cmt}}</p>
+			
+		</div>
+
+		{%endfor%}
+	
+			<section id="footer-bar">
+				<div class="row">
+					<div class="span3">
+						<h4>Navigation</h4>
+						<ul class="nav">
+							<li><a href="/">Homepage</a></li>  
+							<li><a href="/">About Us</a></li>
+							<li><a href="/">Contac Us</a></li>
+							<li><a href="/cartpage">Your Cart</a></li>
+		
+						</ul>					
+					</div>
+					<div class="span4">
+						<h4>My Account</h4>
+						<ul class="nav">
+							<li><a href="/youracc">My Account</a></li>
+							<li><a href="/yourorder">My Order</a></li>
+							<li><a href="/cartpage">Wish List</a></li>
+							<li><a href="/">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="span5">
+						<p class="logo"><img src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></p>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<br/>
+						<span class="social_icons">
+							<a class="facebook" href="#">Facebook</a>
+							<a class="twitter" href="#">Twitter</a>
+							<a class="skype" href="#">Skype</a>
+							<a class="vimeo" href="#">Vimeo</a>
+						</span>
+					</div>					
+				</div>	
+			</section>
+			<section id="copyright">
+				<span>Copyright 2020 All right reserved. Powered By Muchhar Bharat</span>
+			</section>
+		</div>
+		<script src="{% static 'themes/js/common.js'%}"></script>
+		<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+				
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });								
+			});
+		</script>
+    </body>
+</html>

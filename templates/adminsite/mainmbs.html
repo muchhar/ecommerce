@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+	function openNav() {
+  		document.getElementById("mySidenav").style.width = "250px";
+	}
+
+	function closeNav() {
+  		document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
+	<style type="text/css">
+		.main
+		{
+			background-color: #6C7A93;
+			
+			height: 60px;
+			width: 100%;
+			margin-top: 0px;
+			padding-top: 0px;
+
+		}
+		.home{
+			float: left;
+			background-image: url({% static 'image/bali.png'%});
+
+			background-size: 40px; 
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: #6C7A93;
+			border: 0px;
+			margin-left: 2px;
+			height: 100%;
+			width: 40px;
+		}
+		.cname{
+			float: left;
+			font-style: italic;
+
+			font-size: 26px;
+			color: white;
+			
+			margin-left: 50px;
+		}
+		
+		.footer{
+			color:white;
+			background-color: #6C7A93;
+			height: 50px;
+			width: 100%;
+			margin-top: 130px;
+		}
+		.copyright{
+			text-align: center;
+			padding-top: 15px;
+		}
+		.search{
+			width: 40%;
+			height: 30px;
+			font-size: 15px;
+			border-color: white;
+			border-radius: 10px;
+			
+			margin-top: 15px;
+
+		}
+		.input-icons{
+			align-items: center;
+			float: left;
+			margin-left: 60px;
+			width: 42%;
+		}
+		 
+        .input-field { 
+        	margin-left: 10px;
+            width: 95%; 
+            height:30px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border:none;
+            text-align: center; 
+        } 
+        #kot{
+        	margin-right: 20px;
+        	color:white;
+        	
+			float: right;
+			margin-top: 20px;
+        	width: 2%;
+        }
+        .cart {
+        	float: right;
+        	margin-right: 20px;
+        	margin-top: 15px;
+        }
+        .cart1{
+        	float: left;
+        }
+        .cart2{
+        	float: right;
+        	color: white;
+
+        	height: 10px;
+        	margin-left: 15px;
+        	margin-top: -15px;
+        	position: absolute;
+        }
+        body{
+        	min-width: 1100px;
+        }
+		.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:  #6C7A93;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: black;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.som{
+	color: black;
+	text-decoration: none;
+
+}
+.pname{
+	margin-top: 0px;
+}
+
+	
+	</style>
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/">Home</a>
+  <a href="/youracc">Your Account</a>
+  <a href="/yourorder">Your Order</a>
+  <a href="/cartpage">Cart</a>
+  
+  {%if msg%} <a href="/logout">Logout</a> {% else %}<a href="/login">Login/signup</a>{%endif%}
+</div>
+
+
+	<div class="main">
+		
+		
+		<button class="home" onclick="openNav()"> </button>
+		<h1 class="cname">MBS Electronics</h1>
+		<div class="input-icons"> 
+            
+            <form method="post"> {%csrf_token%}  
+            	<div style="float: left;width: 90%;"><input class="input-field"  type="search" placeholder="Search here" name="search" ></div>
+                <div style=""><input type="submit" name="" value="" style="background-image: url({% static 'image/rici.png'%});background-color:#6C7A93;background-size: 18px 18px;border-color: #6C7A93;border-width: 0px;margin-top: 15px;width: 20px;padding-top: 0px;height: 20px;background-position: center;background-repeat: no-repeat;align-items: center;"></div>
+                 
+                 </form>
+            </div>
+        <div class="cart">
+        	
+        	<a href="/cartpage"><img class="cart1" src={% static 'image/mogi.png'%}>
+        	<p class="cart2">{%if bb%}{{bb}}{%else%}0{%endif%}</p></a>
+        </div> 
+
+		
+	</div>
+	<div>
+		<p align="center">
+			
+			<p align="center" class="som">{%if msg%}{{msg}} {% else %}<a class="som" href="/login">Hello, SignUp/Login</a>{%endif%} </p>
+
+		</p>
+	</div>
+	{%for i in product%}
+	
+	<a href="{%url 'productv' i.id%}" style="text-decoration-line: none; color: green;">
+	<div style="width: 100%;height: 200px; margin-left: 10px;">
+		<div style="width: 250px; float: left;">
+			<img src= "{{ i.pp1.url }}" width="250" height="200" style="float: left; border-radius: 15px;">
+		</div>
+		<div style="margin-left: 270px; margin-right: 10px;">
+			<h1 style="width: 100%;">{{i.pname}}</h1>
+			<p style="width: 100%;"><b>Price: {{i.pprice}}</b></p>
+			<p style="width: 100%;"> {{i.pdes}}</p>
+		</div>
+	</div></a>
+	<hr width="100%">
+	{%endfor%}
+	
+	
+	
+	<div class="footer">
+		<p class="copyright" > All right Reserverd &copy 2020</p>
+	</div>
+
+</body>
+</html>

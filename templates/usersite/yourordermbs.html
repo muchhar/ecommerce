@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Order</title>
+	<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		.main
+		{
+			
+			
+			height: 60px;
+			width: 100%;
+			margin-top: 0px;
+			padding-top: 0px;
+
+		}
+		body{
+			background-image: url({% static 'image/kan.jpg'%});
+		}
+		.home{
+			float: left;
+			
+			margin-top: 15px;
+			color: rgb(0,176,80);
+			margin-left: 10px;
+			
+		}
+		.cname{
+			font-style: italic;
+
+			font-size: 26px;
+			color: rgb(0,176,80);
+			padding-top: 16px;
+			margin-left: 50px;
+		}
+		
+		.footer{
+			background-color: #4CAAF5;
+			height: 100px;
+			width: 100%;
+			margin-top: 130px;
+		}
+		.copyright{
+			color: white;
+			text-align: center;
+			padding-top: 35px;
+		}
+		.img1{
+				height: 200px;
+				width: 250px;
+				background-color: blue;
+				border-radius: 15px;
+				float: left;
+				
+			}
+			.mainc{
+				width: 90%;
+				height: 205px;
+				margin-top: 25px;
+				margin-left: 5%;
+				
+			}
+			.pname{
+				width: auto;
+				margin-left: 260px;
+
+				height: 200px;
+				background-color:#FED7E7;
+			
+				border-radius: 10px;
+			}
+			.des{
+				 
+  				overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: -webkit-box;
+			    line-height: 16px;    
+			         
+			    -webkit-line-clamp: 5; /* Write the number of 
+			                              lines you want to be 
+			                              displayed */
+			    -webkit-box-orient: vertical;
+				
+			}
+	</style>
+</head>
+<body>
+	<div class="main">
+		
+		
+		<a href="/" class="home"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+		<h1 class="cname">Your Order</h1>
+		
+	</div>
+
+
+
+	<p align="left" style="margin-left: 5%;">Your Order:<b>{%if emt%}{{emt}}{%endif%}</b></p>
+	{%for i in cart%}
+	
+	<a href="{%url 'productv' i.id%}" style="text-decoration-line: none; color: green;">
+	<div style="width: 90%;height: 105px; margin-left: 5%;">
+		<div style="width: 150px; float: left;">
+			<img src= "{{ i.pp1.url }}" width="150" height="100" style="float: left; border-radius: 15px;">
+		</div>
+		<div style="margin-left: 170px; margin-right: 10px;">
+			<h1 style="width: 100%;">{{i.pname}}</h1>
+			
+
+			
+		</div>
+		<div>
+			<a href="{%url 'cancel' i.ketu%}" style="margin-left: 20px; background-color: #6C7A93; text-decoration-line: none; color: white; border-radius: 5px;"><button style="color: white; background-color: red;">Cancel</button></a>
+		</div>
+	</div></a>
+	<hr width="90%" style="margin-left: 5%;">
+	{%endfor%}
+
+
+	<p align="left" style="margin-left: 5%;">Other Product:</p>
+	{%for i in product%}
+	<a href="{%url 'productv' i.id%}" style="text-decoration-line: none;">
+	<div class="mainc">
+		<div class="img1">
+			<img src= "{{ i.pp1.url }}" width="250" height="200" style="float: left; border-radius: 15px;">
+		</div>
+		<div class="pname">
+			<p style="padding-top: 10px;margin-left: 10px; font-size: 25px;color: rgb(0,176,80);">{{i.pname}}</p>
+			<p style="margin-left: 10px;color: rgb(0,176,80);font-size: 20px;">Price: {{i.pprice}}</p>
+			<p style="margin-left: 10px;color: rgb(0,176,80);" class="des">{{i.pdes}}</p>
+			
+		</div>
+		<hr width="100%">
+	</div></a>
+	{%endfor%}
+	
+	
+	
+	
+		
+			
+		
+			
+	
+	<div class="footer">
+		<p class="copyright" > All right Reserverd &copy 2020</p>
+	</div>
+
+</body>
+</html>

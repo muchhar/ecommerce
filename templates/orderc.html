@@ -1,0 +1,133 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Cancel Order</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<!-- bootstrap -->
+		<link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">      
+		<link href="{% static 'bootstrap/css/bootstrap-responsive.min.css'%}" rel="stylesheet">
+		
+		<link href="{% static 'themes/css/bootstrappage.css'%}" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/flexslider.css'%}" rel="stylesheet"/>
+		<link href="{% static 'themes/css/main.css'%}" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="{% static 'themes/js/jquery-1.7.2.min.js'%}"></script>
+		<script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>				
+		<script src="{% static 'themes/js/superfish.js'%}"></script>
+
+
+		<style type="text/css">
+			input{
+			height: 20px;
+			width: 200px;
+		}
+		</style>
+				
+		
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/jquery.fancybox.css'%}" rel="stylesheet"/>
+				
+		<!-- scripts -->
+	
+						
+		<script src="{% static 'themes/js/jquery.scrolltotop.js'%}"></script>
+		<script src="{% static 'themes/js/jquery.fancybox.js'%}"></script>	
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+    <body>		
+		
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu" >
+				<div class="navbar-inner main-menu" >				
+					<a href="/" class="logo pull-left"><img style="margin-top: 1px;" src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></a>
+					
+				</div>
+			</section>
+
+			
+	
+
+		
+
+<h2 align="center" style="margin-top: 100px;">Your order Cancelled!</h2>
+<h4 align="center" style="color: green">Your Money will Refund in 4 to 5 business days</h4>
+<a href="/"  style="width: 100px;"><p align="center">GO Home</p></a>
+
+
+
+	
+	
+			<section id="footer-bar" style="margin-top: 150px;">
+				<div class="row">
+					<div class="span3">
+						<h4>Navigation</h4>
+						<ul class="nav">
+							<li><a href="/">Homepage</a></li>  
+							<li><a href="/">About Us</a></li>
+							<li><a href="/">Contac Us</a></li>
+							<li><a href="/cartpage">Your Cart</a></li>
+		
+						</ul>					
+					</div>
+					<div class="span4">
+						<h4>My Account</h4>
+						<ul class="nav">
+							<li><a href="/youracc">My Account</a></li>
+							<li><a href="/yourorder">My Order</a></li>
+							<li><a href="/cartpage">Wish List</a></li>
+							<li><a href="/">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="span5">
+						<p class="logo"><img src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></p>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<br/>
+						<span class="social_icons">
+							<a class="facebook" href="#">Facebook</a>
+							<a class="twitter" href="#">Twitter</a>
+							<a class="skype" href="#">Skype</a>
+							<a class="vimeo" href="#">Vimeo</a>
+						</span>
+					</div>					
+				</div>	
+			</section>
+			<section id="copyright">
+				<span>Copyright 2020 All right reserved. Powered By Muchhar Bharat</span>
+			</section>
+		</div>
+		<script src="{% static 'themes/js/common.js'%}"></script>
+		<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+				
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });								
+			});
+		</script>
+    </body>
+</html>

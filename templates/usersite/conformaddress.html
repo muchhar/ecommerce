@@ -1,0 +1,232 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+	<head onload="submitPayuForm()">
+		<meta charset="utf-8">
+		<title>Conform Address</title>
+		<script type="text/javascript">
+    var hash = "{{ hashh }}";
+    function submitPayuForm() {
+      if(hash =='') {
+        return;
+      }
+      var payuForm = document.forms.payuForm;
+      payuForm.submit();
+    }
+  </script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<!-- bootstrap -->
+		<link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">      
+		<link href="{% static 'bootstrap/css/bootstrap-responsive.min.css'%}" rel="stylesheet">
+		
+		<link href="{% static 'themes/css/bootstrappage.css'%}" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/flexslider.css'%}" rel="stylesheet"/>
+		<link href="{% static 'themes/css/main.css'%}" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="{% static 'themes/js/jquery-1.7.2.min.js'%}"></script>
+		<script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>				
+		<script src="{% static 'themes/js/superfish.js'%}"></script>
+
+
+		<style type="text/css">
+			input{
+			height: 20px;
+			width: 200px;
+		}
+		</style>
+				
+		
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/jquery.fancybox.css'%}" rel="stylesheet"/>
+				
+		<!-- scripts -->
+	
+						
+		<script src="{% static 'themes/js/jquery.scrolltotop.js'%}"></script>
+		<script src="{% static 'themes/js/jquery.fancybox.js'%}"></script>	
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+    <body>		
+		
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu" >
+				<div class="navbar-inner main-menu" >				
+					<a href="/" class="logo pull-left"><img style="margin-top: 1px;" src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></a>
+					
+				</div>
+			</section>
+
+			
+			<form method="post" style="margin-top: 20px;" action={{ action }} >
+		{%csrf_token%}
+	<table class="tlogin" align="center" border="0px"cellpadding="4px">
+		<tr rowspan="2">
+
+			<th align="center" style="font-size: 18px;"><b>{%if payc%}Conform Your Order{%else%}Conform Your Address{%endif%}</b></th>
+		</tr>
+		<tr>
+			{%if payc%}<th align="left">Product Name:</th>{%else%}<th  align="left">Street Address:</th>
+			    {%endif%}
+			<input type="hidden" name="key" value="{{ MERCHANT_KEY }}"/>
+	      <input type="hidden" name="hash_string" value="{{ hash_string}}" />
+	      <input type="hidden" name="hash" value="{{ hashh }}"/>
+	       <input type="hidden" name="posted" value="{{ posted }}"/>
+	      <input type="hidden" name="txnid" value="{{ txnid }}" />
+	      <input name="amount" type="hidden" value={{tot}} />
+	      <input name="firstname" type="hidden" id="firstname" value="bhara"/>
+	      <input name="email"  type="hidden" id="email" value="" />
+	      <textarea name="productinfo" style="display: none;">product</textarea>
+	      <input name="surl" type="hidden" value="{{ posted.surl }}" size="64" />
+	      <input name="phone" type="hidden" value={{dit.mn}} />
+	      <input type="hidden" name="udf2" value={{uunum}} >
+	      <input type="hidden" name="udf3" value={{uunumpid}} >
+	      <input type="hidden" name="udf4" value={{uunumq}} >
+	      <input type="hidden" name="furl" value="{{ posted.furl }}" size="64" />
+	      <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
+		</tr>
+		<tr>
+			
+
+			<td>
+			    {%if payc%}<h1 align="left" style="color: black; font-size: 12px;font-weight: normal; margin-top: -20px;margin-left: 10px;">{{payc.sname}}</h1>{%else%}<textarea placeholder="Enter your Stret Address" name="sadd" >{{sadd}}</textarea>
+			    {%endif%}
+				
+			</td>
+		</tr>
+		<tr>
+			{%if payc%}<th align="left">Total Quantity:</th>{%else%}<th  align="left">City:</th>
+			    {%endif%}
+			
+		</tr>
+		<tr>
+			
+			<td>
+				{%if payc%}<h1 align="left" style="color: black; font-size: 12px;font-weight: normal; margin-top: -20px;margin-left: 10px;">{{payc.spoq}}</h1>{%else%}<input type="text" name="scity" placeholder="Enter your city name" value="{{scity}}" style="background-color: inherit;">
+			    {%endif%}
+			
+				
+			</td>
+		</tr>
+		<tr>
+			{%if payc%}<th align="left">Total Price:</th>{%else%}<th  align="left">Zipcode:</th>
+			    {%endif%}
+			
+		</tr>
+		<tr>
+			
+			<td>
+				{%if payc%}<h1 align="left" style="color: black; font-size: 12px;font-weight: normal; margin-top: -20px;margin-left: 10px;"> ₹ {{payc.stotal}}</h1>{%else%}<input type="text" name="zip" placeholder="Enter Zipcode" value="{{zip}}" style="background-color: inherit;">
+			    {%endif%}
+			
+				
+			</td>
+		</tr>
+        <tr>
+        	{%if payc%}{%else%}<th  align="left">Mobile Number:</th>
+			    {%endif%}
+			
+		</tr>
+		<tr>
+			
+			<td>
+				{%if payc%}{%else%}<input type="text" name="mn" placeholder="Enter Mobile number" value="{{mn}}" style="background-color: inherit;">
+			    {%endif%}
+				
+			</td>
+		</tr>
+		
+		
+		<tr>
+			<td>
+				
+				<input type="button" name="" value="Conform" class="btn btn-inverse" style="width: 215px; height: 30px;" >
+			</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p style="color: red;">{{msg}}</p>
+			</td>
+		</tr>
+		
+
+
+	</table></form>
+			
+	
+	
+
+	
+	
+			<section id="footer-bar" style="margin-top: 100px;">
+				<div class="row">
+					<div class="span3">
+						<h4>Navigation</h4>
+						<ul class="nav">
+							<li><a href="/">Homepage</a></li>  
+							<li><a href="/">About Us</a></li>
+							<li><a href="/">Contac Us</a></li>
+							<li><a href="/cartpage">Your Cart</a></li>
+		
+						</ul>					
+					</div>
+					<div class="span4">
+						<h4>My Account</h4>
+						<ul class="nav">
+							<li><a href="/youracc">My Account</a></li>
+							<li><a href="/yourorder">My Order</a></li>
+							<li><a href="/cartpage">Wish List</a></li>
+							<li><a href="/">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="span5">
+						<p class="logo"><img src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></p>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<br/>
+						<span class="social_icons">
+							<a class="facebook" href="#">Facebook</a>
+							<a class="twitter" href="#">Twitter</a>
+							<a class="skype" href="#">Skype</a>
+							<a class="vimeo" href="#">Vimeo</a>
+						</span>
+					</div>					
+				</div>	
+			</section>
+			<section id="copyright">
+				<span>Copyright 2020 All right reserved. Powered By Muchhar Bharat</span>
+			</section>
+		</div>
+		<script src="{% static 'themes/js/common.js'%}"></script>
+		<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+				
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });								
+			});
+		</script>
+    </body>
+</html>

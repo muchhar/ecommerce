@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{%load widget_tweaks%}
+<html>
+
+<head>
+	<title>Login</title>
+	<style type="text/css">
+		
+		body{
+			background-color: #039BE5;
+
+		}
+		div{
+			margin-top: 50px;
+			border-radius: 5px;
+			background-color: white;
+			height: 250px;
+			width: 300px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		h1{
+			text-align: center;
+			padding-top: 10px;
+			font-family: Arial;
+		}
+		.input{
+			margin-left: 50px;
+			border:1px solid;
+			border-color: gray;
+			border-radius: 3px;
+			margin-top: 10px;
+			height: 20px;
+			width: 200px;
+
+
+		}
+		.button{
+			background-color: #039BE5;
+			height: 30px;
+			width: 200px;
+			color: white;
+
+			border-radius: 5px;
+			border-color: #039BE5;
+			margin-left: 50px;
+			margin-top: 10px;
+		}
+		p{
+			color: white;
+			text-align: center;
+			font-family: Arial;
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+	    <form method='post'>
+		{%csrf_token%}
+		<h1><b>MBS</b></h1>
+		<div class="input">
+		 {%render_field form.username placeholder="Enter your email"%}
+			</div>
+		<div class="input">
+		 {%render_field form.password placeholder="Enter Your Password"%}
+			</div>
+			{%if form.errors%}
+		<h3 align="center" style="color:red; font-size:15px;">**Invalid Username or Password</h3>
+		{%endif%}
+		<input class="input" type="submit" style="background-color:#039BE5; height: 30px;
+			width: 200px;
+			color: white;
+
+			border-radius: 5px;
+			border-color: #039BE5;">
+		</form>
+		
+	</div>
+	<p>&copy 2017 MBS</p>
+
+</body>
+</html>

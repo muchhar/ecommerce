@@ -1,0 +1,293 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HOME</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">      
+		<link href="{% static 'bootstrap/css/bootstrap-responsive.min.css'%}" rel="stylesheet">
+		
+		<link href="{% static 'themes/css/bootstrappage.css'%}" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="{% static 'themes/css/flexslider.css'%}" rel="stylesheet"/>
+		<link href="{% static 'themes/css/main.css'%}" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="{% static 'themes/js/jquery-1.7.2.min.js'%}"></script>
+		<script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>				
+		<script src="{% static 'themes/js/superfish.js'%}"></script>	
+		
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		<div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4">
+					<form method="POST" class="search_form">
+					 {%csrf_token%} 
+						<input type="text" name="search" class="input-block-level search-query" Placeholder="Search here" style="color: black;">
+					</form>
+				</div>
+				<div class="span8">
+					<div class="account pull-right">
+						<ul class="user-menu">
+							<li><a href="/">Home</a></li>	
+							<li><a href="/youracc">My Account</a></li>
+							<li><a href="/yourorder">My Order</a></li>
+							<li><a href="/cartpage">Your Cart ({{bb}})</a></li>
+												
+							<li>{%if msg%} <a href="/logout">Logout</a> {% else %}<a href="/login">Login/Signup</a>{%endif%}
+</li>		
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper" class="container">
+			<section class="navbar main-menu">
+				<div class="navbar-inner main-menu">				
+					<a href="/" class="logo pull-left"><img src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></a>
+					<nav id="menu" class="pull-right">
+						<ul>
+							<li>{%if msg%}<a href="/youracc">{{msg}}</a> {% else %}<a class="som" href="/login">Hello, SignUp/Login</a>{%endif%}					
+								
+							</li>															
+							
+						</ul>
+					</nav>
+				</div>
+			</section>
+			{%if k or mt%}
+			<section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Searched <strong>Products</strong></span></span></span>
+									
+								</h4>
+								{%if mt%}
+								<h4 class="title" align="center">
+									<span class="text"><strong>{{mt}}</strong></span>
+									
+								</h4>{%endif%}
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">	
+											    {%for product in k%}											
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="{%url 'productv' product.id%}"><img src="{{product.pp1.url}}" alt="" /></a></p>
+														<a href="{%url 'productv' product.id%}" class="title">{{product.pname}}</a><br/>
+														<a href="{%url 'productv' product.id%}" class="category">{{product.pname}}</a>
+														<p class="price">₹{{product.pprice}}</p>
+													</div>
+												</li>
+												{%endfor%}
+												
+											</ul>
+										</div>
+
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						
+			</section>
+
+
+
+
+			{%else%}
+			<section  class="homepage-slider" id="home-slider">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<img src="{% static 'themes/images/carousel/banner-2.jpg'%}" alt="" />
+							<div class="intro">
+								<h1>MBS Electronics</h1>
+								<p><span>WELCOME</span></p>
+								<p><span></span></p>
+							</div>
+						</li>
+						<li>
+							<img src="{% static 'themes/images/carousel/banner-2.jpg'%}" alt="" />
+							<div class="intro">
+								<h1>MBS Electronics</h1>
+								<p><span>WELCOME</span></p>
+								<p><span></span></p>
+							</div>
+						</li>
+					</ul>
+				</div>			
+			</section>
+
+			
+			<section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">	
+											    {%for product in product1%}											
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="{%url 'productv' product.id%}"><img src="{{product.pp1.url}}" alt="" /></a></p>
+														<a href="{%url 'productv' product.id%}" class="title">{{product.pname}}</a><br/>
+														<a href="{%url 'productv' product.id%}" class="category">{{product.pname}}</a>
+														<p class="price">₹{{product.pprice}}</p>
+													</div>
+												</li>
+												{%endfor%}
+												
+											</ul>
+										</div>
+										<div class="item">
+											<ul class="thumbnails">
+												{%for product2 in product2%}	
+												<li class="span3">
+													<div class="product-box">
+														<p><a href="{%url 'productv' product2.id%}"><img src="{{product2.pp1.url}}" alt="" /></a></p>
+														<a href="{%url 'productv' product2.id%}" class="title">{{product2.pname}}</a><br/>
+														<a href="{%url 'productv' product2.id%}" class="category">{{product2.pname}}</a>
+														<p class="price">₹{{product2.pprice}}</p>
+													</div>
+												</li>
+												{%endfor%}
+																																												
+											</ul>
+										</div>
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Other <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-2" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<ul class="thumbnails">	
+											  {%for product3 in product3%}											
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="{%url 'productv' product3.id%}"><img src="{{product3.pp1.url}}" alt="" /></a></p>
+														<a href="{%url 'productv' product3.id%}" class="title">{{product3.pname}}</a><br/>
+														<a href="{%url 'productv' product3.id%}" class="category">{{product3.pname}}</a>
+														<p class="price">₹{{product3.pprice}}</p>
+													</div>
+												</li>
+												{%endfor%}
+												
+											</ul>
+										</div>
+										<div class="item">
+											<ul class="thumbnails">
+												{%for product4 in product4%}
+												<li class="span3">
+													<div class="product-box">
+														<p><a href="{%url 'productv' product4.id%}"><img src="{{product4.pp1.url}}" alt="" /></a></p>
+														<a href="{%url 'productv' product4.id%}" class="title">{{product4.pname}}</a><br/>
+														<a href="{%url 'productv' product4.id%}" class="category">{{product4.pname}}</a>
+														<p class="price">₹{{product4.pprice}}</p>
+													</div>
+												</li>
+												{%endfor%}
+																																												
+											</ul>
+										</div>
+									</div>							
+								</div>
+							</div>						
+						</div>
+								
+					</div>				
+				</div>
+			</section>
+						{%endif%}
+			<section id="footer-bar">
+				<div class="row">
+					<div class="span3">
+						<h4>Navigation</h4>
+						<ul class="nav">
+							<li><a href="/">Homepage</a></li>  
+							<li><a href="/">About Us</a></li>
+							<li><a href="/">Contac Us</a></li>
+							<li><a href="/cartpage">Your Cart</a></li>
+							<li>{%if msg%} <a href="/logout">Logout</a> {% else %}<a href="/login">Login/Signup</a>{%endif%}
+</li>								
+						</ul>					
+					</div>
+					<div class="span4">
+						<h4>My Account</h4>
+						<ul class="nav">
+							<li><a href="/youracc">My Account</a></li>
+							<li><a href="/yourorder">My Order</a></li>
+							<li><a href="/cartpage">Wish List</a></li>
+							<li><a href="/">Newsletter</a></li>
+						</ul>
+					</div>
+					<div class="span5">
+						<p class="logo"><img src="{% static 'themes/images/logo2.png'%}" class="site_logo" alt=""></p>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<br/>
+						<span class="social_icons">
+							<a class="facebook" href="#">Facebook</a>
+							<a class="twitter" href="#">Twitter</a>
+							<a class="skype" href="#">Skype</a>
+							<a class="vimeo" href="#">Vimeo</a>
+						</span>
+					</div>					
+				</div>	
+			</section>
+			<section id="copyright">
+				<span>Copyright 2020 All right reserved. Powered By Muchhar Bharat</span>
+			</section>
+		</div>
+		
+		<script src="{% static 'themes/js/jquery.flexslider-min.js'%}"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+		  </body>
+</html>
